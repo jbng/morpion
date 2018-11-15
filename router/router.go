@@ -2,20 +2,23 @@ package router
 
 import (
 	"net/http"
-	"fmt"
+	"log"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/websocket"	
+	"github.com/gorilla/websocket"
+	"encoding/json"
 )
 
-var wsupgrader = websocket.Upgrader{
-    ReadBufferSize:  1024,
-    WriteBufferSize: 1024,
-}
+var wsupgrader = websocket.Upgrader{}
 
+type payload struct{
+	event string
+	tile_index int
+
+}
 func wshandler(w http.ResponseWriter, r *http.Request) {
     conn, err := wsupgrader.Upgrade(w, r, nil)
     if err != nil {
-		fmt.Println("Failed to set websocket upgrade: %+v", err)
+		log.Println("Failed to set websocket upgrade: %+v", err)
        return
     }
 
@@ -24,7 +27,19 @@ func wshandler(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             break
         }
-        conn.WriteMessage(t, msg)
+        var payload *payload
+        if err := json.Unmarshal(msg, &payload); err != nil {
+        	log.Fatal(err)
+		}
+		if (payload.event == "play_at_coordinate") {
+			log.Println("play_at_coordinate: %d", payload.tile_index)
+		}
+
+		if (payload.event == "play_again") {
+			log.Println("play_again")
+		}
+
+		conn.WriteMessage(t, msg)
     }
 }
 

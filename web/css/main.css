@@ -8,7 +8,17 @@ body {
     padding-top: 40px;
 }
 
+.winner {
+    color: blue;
+    padding: 10px;
+}
+
 .me {
+    padding: 10px;
+}
+
+.your-turn {
+
     padding: 10px;
 }
 
@@ -25,4 +35,26 @@ body {
     border: 2px solid rgba(0, 0, 0, 1);
     box-sizing: border-box;
     cursor: pointer;
+}
+
+.game-table-tile--checked:after {
+    content: 'x';
+    font-size: 30px;
+    line-height: calc(200px/3);
+    position: relative;
+    top: -4px;
+    cursor: default;
+}
+
+.game-table-tile--red {
+    color: red;
+}
+.game-table-tile--green {
+    color: green;
+}
+
+.game-table:after {
+    content: '';
+    display: block;
+    clear: both;
 }
