@@ -1,11 +1,11 @@
 package main
 
 import (
-	"morpion/router"
+	"morpion/server"
 	"github.com/gin-gonic/contrib/static"
 )
 func main() {
-	router := router.InitRouter()
+	router := server.InitRouter()
 
 	router.Use(static.Serve("/", static.LocalFile("./web", true)))
 
