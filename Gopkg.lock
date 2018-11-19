@@ -54,7 +54,7 @@
   version = "v1.4.0"
 
 [[projects]]
-  digest = "1:be97e109f627d3ba8edfef50c9c74f0d0c17cbe3a2e924a8985e4804a894f282"
+  digest = "1:9a855f51d5eaf25dafc30cf0ad5844d5fb6aacec4ceb98a04ed2964562edbc0c"
   name = "github.com/json-iterator/go"
   packages = ["."]
   pruneopts = "UT"
@@ -75,6 +75,14 @@
   packages = ["."]
   pruneopts = "UT"
   revision = "57fdcb988a5c543893cc61bce354a6e24ab70022"
+
+[[projects]]
+  digest = "1:2e76a73cb51f42d63a2a1a85b3dc5731fd4faf6821b434bd0ef2c099186031d6"
+  name = "github.com/rs/xid"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "15d26544def341f036c5f8dca987a4cbe575032c"
+  version = "v1.2.1"
 
 [[projects]]
   digest = "1:cc1c574c9cb5e99b123888c12b828e2d19224ab6c2244bda34647f230bf33243"
@@ -137,6 +145,7 @@
     "github.com/gin-gonic/contrib/static",
     "github.com/gin-gonic/gin",
     "github.com/gorilla/websocket",
+    "github.com/rs/xid",
     "github.com/smartystreets/goconvey/convey",
   ]
   solver-name = "gps-cdcl"

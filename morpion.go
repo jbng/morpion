@@ -5,7 +5,8 @@ import (
 	"github.com/gin-gonic/contrib/static"
 )
 func main() {
-	router := server.InitRouter()
+	game := server.NewGame()
+	router := server.InitRouter(game)
 
 	router.Use(static.Serve("/", static.LocalFile("./web", true)))
 
