@@ -10,9 +10,9 @@ import (
 
 var wsupgrader = websocket.Upgrader{}
 
-type payload struct {
-	event      string
-	tile_index int
+type Payload struct {
+	Event      string `json:"event"`
+	Tile_index string `json:"tile_index"`
 }
 
 func wshandler(g *Game, w http.ResponseWriter, r *http.Request) {
@@ -36,16 +36,17 @@ func wshandler(g *Game, w http.ResponseWriter, r *http.Request) {
 			}
 			break
 		}
-		var payload *payload
+		payload := new(Payload)
 		if err := json.Unmarshal(msg, &payload); err != nil {
 			log.Fatal(err)
 		}
 		log.Println("Message", string(msg))
-		if (payload.event == "play_at_coordinate") {
-			log.Println("play_at_coordinate: %d", payload.tile_index)
+		log.Println("Payload: ", payload.Event, " & ", payload.Tile_index)
+		if (payload.Event == "play_at_coordinate") {
+			log.Printf("play_at_coordinate: %s", payload.Tile_index)
 		}
 
-		if (payload.event == "play_again") {
+		if (payload.Event == "play_again") {
 			log.Println("play_again")
 		}
 
